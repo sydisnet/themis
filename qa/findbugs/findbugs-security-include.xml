@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Bug category="BAD_PRACTICE,MALICIOUS_CODE,CORRECTNESS,PERFORMANCE,SECURITY,STYLE,EXPERIMENTAL,MT_CORRECTNESS,I18N"/>
+    </Match>
+</FindBugsFilter>

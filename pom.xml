@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--  Object Model Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project METADATA -->
+    <groupId>eu.sydisnet</groupId>
+    <artifactId>themis</artifactId>
+    <version>1.0.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- Propriétés communes -->
+    <properties>
+        <!-- Version des plugins Maven utilisés -->
+        <!-- Plugins Communs -->
+        <!-- Gestion des ressources -->
+        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+        <!-- Wrapper sur le compilateur Javac -->
+        <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+        <!-- Plugins de packaging de l'application -->
+        <maven.war.plugin.version>3.2.0</maven.war.plugin.version>
+
+        <!-- Options -->
+        <!-- Encoding -->
+        <!-- Forçage de l'encodage du projet afin d'éliminer l'avetsissement suivant : -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Encodage des rapports des essais d'intégration -->
+        <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+        <!-- Force la source et la destination de la version du JDK -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Options du compilateur -->
+        <maven.compiler.fork>true</maven.compiler.fork>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.compiler.verbose>false</maven.compiler.verbose>
+        <!-- Skipping default deployment -->
+        <maven.deploy.skip>true</maven.deploy.skip>
+
+        <!-- Versions des librairies du projet -->
+        <!-- OpenEJB -->
+        <apache.openejb.version>4.7.4</apache.openejb.version>
+        <!-- TomEE -->
+        <apache.tomee.api.version>7.0-1</apache.tomee.api.version>
+        <apache.tomee.impl.version>7.0.4</apache.tomee.impl.version>
+        <!-- Testing -->
+        <junit.version>4.12</junit.version>
+        <assertj.version>3.9.1</assertj.version>
+        <mockito.version>2.18.3</mockito.version>
+        <!-- Database Rider -->
+        <database.rider.version>1.2.8</database.rider.version>
+        <!-- Cucumber -->
+        <cucumber.version>2.4.0</cucumber.version>
+    </properties>
+
+    <!-- Dependencies Management -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- ############################### TomEE API ######################################## -->
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- TomEE :: JavaEE Full API (zip and JAR Files) -->
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${apache.tomee.api.version}</version>
+            </dependency>
+
+            <!-- Application Servers -->
+            <!-- OpenEJB :: Container :: Core -->
+            <dependency>
+                <groupId>org.apache.openejb</groupId>
+                <artifactId>openejb-core</artifactId>
+                <version>${apache.openejb.version}</version>
+            </dependency>
+
+            <!-- OpenEJB :: Container :: Core -->
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
+                <artifactId>openejb-core</artifactId>
+                <version>${apache.tomee.impl.version}</version>
+            </dependency>
+
+            <!-- OpenEJB :: Server :: CXF RS -->
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
+                <artifactId>openejb-cxf-jaxrs</artifactId>
+                <version>${apache.tomee.impl.version}</version>
+            </dependency>
+
+            <!-- OpenEJB :: TomEE :: TomEE Embedded -->
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
+                <artifactId>tomee-embedded</artifactId>
+                <version>${apache.tomee.impl.version}</version>
+                <classifier>jaxrs</classifier>
+            </dependency>
+
+
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- ############################### Testing Stack #################################### -->
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- Testing Frameworks -->
+            <!-- JUnit -->
+            <!-- JUnit is a regression testing framework written by Erich Gamma and Kent Beck. It is used by the developer who implements unit tests in Java. -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+            <!-- Assertion Libraries -->
+            <!-- AssertJ Fluent Assertions -->
+            <!-- Rich and fluent assertions for testing for Java -->
+            <!-- Alternative to Hamcrest matchers. Provides fluent, type-aware API -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+            </dependency>
+
+            <!-- Mocking -->
+            <!-- Mockito Core -->
+            <!-- Mockito mock objects library core API and implementation -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- ############################### Datadase Rider ################################### -->
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- Rider Core -->
+            <dependency>
+                <groupId>com.github.database-rider</groupId>
+                <artifactId>rider-core</artifactId>
+                <version>${database.rider.version}</version>
+            </dependency>
+
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- ############################### Cucumber ######################################### -->
+            <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
+            <!-- Cucumber JVM: Java8 -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java8</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+
+            <!-- Cucumber JVM: JUnit-->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+
+            <!-- Cucumber JVM: OpenEJB -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-openejb</artifactId>
+                <version>${cucumber.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.openejb</groupId>
+                        <artifactId>openejb-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+
+
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- ############################## Build Settings #################################### -->
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- Build Config -->
+    <build>
+        <!-- Default Goal -->
+        <defaultGoal>verify</defaultGoal>
+
+        <!-- Nom de l'archive de déploiement, utilisée comme racine du contexte quand l'application est lancée -->
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- Répertoires utilisés pour les ressources -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Remplace les variables ${nom_variable} dans les ressources du code de production -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <!-- Répertoires Ressources visibles pour les tests -->
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <!-- Remplace les variables ${nom_variable} dans les ressources de test -->
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <!-- Plugin configuration -->
+        <pluginManagement>
+            <plugins>
+                <!-- Maven Plugins -->
+                <!-- Apache Maven Resources Plugin -->
+                <!-- The Resources Plugin handles the copying of project resources to the output directory. There are two different kinds of resources: main resources and test resources. The difference is that the main resources are the resources associated to the main source code while the test resources are associated to the test source code. Thus, this allows the separation of resources for the main source code and its unit tests. -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin.version}</version>
+                </plugin>
+
+                <!-- Maven Plugins -->
+                <!-- Apache Maven Compiler Plugin -->
+                <!-- The Compiler Plugin is used to compile the sources of your project.  -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <!-- Désactiver les fonctions de compilation Jigsaw (lib/ct.sym) et utilisation de rt.jar à la place -->
+                        <compilerArgument>-XDignore.symbol.file</compilerArgument>
+                    </configuration>
+                </plugin>
+
+                <!-- Maven Plugins -->
+                <!-- Apache Maven WAR Plugin -->
+                <!-- Builds a Web Application Archive (WAR) file from the project output and its dependencies. -->
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven.war.plugin.version}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries/>
+                                <addDefaultSpecificationEntries/>
+                            </manifest>
+                        </archive>
+                        <webResources>
+                            <resource>
+                                <directory>src/main/webapp/WEB-INF</directory>
+                                <targetPath>WEB-INF</targetPath>
+                                <filtering>true</filtering>
+                            </resource>
+                        </webResources>
+                    </configuration>
+                </plugin>
+
+                <!-- Maven Plugins -->
+                <!-- OpenEJB :: Maven Plugins :: TomEE Maven Plugin -->
+                <plugin>
+                    <groupId>org.apache.tomee.maven</groupId>
+                    <artifactId>tomee-maven-plugin</artifactId>
+                    <version>${apache.tomee.impl.version}</version>
+                    <configuration>
+                        <tomeeVersion>${apache.tomee.impl.version}</tomeeVersion>
+                        <tomeeClassifier>jaxrs</tomeeClassifier>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+
+
+
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- ############################## Project Information ############################### -->
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- PROJECT INFORMATION -->
+    <name>Themis</name>
+    <description>MicroServices Platform</description>
+    <url>http://sydisnet.eu/</url>
+    <inceptionYear>2018</inceptionYear>
+
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>This product is distributed as a business-friendly OSS license.</comments>
+        </license>
+    </licenses>
+
+    <!-- Organization -->
+    <organization>
+        <name>SYDISNET</name>
+        <url>http://sydisnet.eu/</url>
+    </organization>
+
+    <!-- Developers -->
+    <developers>
+        <developer>
+            <id>sebastien</id>
+            <name>Sébastien Hébert</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <!-- Modules -->
+    <modules>
+        <module>sandbox</module>
+    </modules>
+
+</project>
