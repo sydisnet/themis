@@ -22,6 +22,9 @@
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
         <!-- Plugins de packaging de l'application -->
         <maven.war.plugin.version>3.2.0</maven.war.plugin.version>
+        <!-- Plugins Tiers -->
+        <!-- Cucumber Reporting -->
+        <maven.cucumber.reporting.plugin.version>3.16.0</maven.cucumber.reporting.plugin.version>
 
         <!-- Options -->
         <!-- Encoding -->
@@ -147,6 +150,7 @@
                 <artifactId>rider-core</artifactId>
                 <version>${database.rider.version}</version>
             </dependency>
+
 
             <!-- ################################################################################## -->
             <!-- ################################################################################## -->
@@ -274,6 +278,14 @@
                         <tomeeVersion>${apache.tomee.impl.version}</tomeeVersion>
                         <tomeeClassifier>jaxrs</tomeeClassifier>
                     </configuration>
+                </plugin>
+
+                <!-- Cucumber Reporting -->
+                <!-- Provides pretty html reports for Cucumber. It works by generating html from the cucumber json file -->
+                <plugin>
+                    <groupId>net.masterthought</groupId>
+                    <artifactId>maven-cucumber-reporting</artifactId>
+                    <version>${maven.cucumber.reporting.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

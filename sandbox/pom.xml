@@ -31,4 +31,10 @@
     <name>Themis :: Sandbox Parent</name>
     <description>Sandbox for Microservices</description>
 
+
+    <!-- Modules -->
+    <modules>
+        <module>components</module>
+    </modules>
+
 </project>
