@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--  Object Model Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>eu.sydisnet.themis</groupId>
+        <artifactId>sandbox</artifactId>
+        <version>1.0.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- Project METADATA -->
+    <groupId>eu.sydisnet.themi.sandbox</groupId>
+    <artifactId>components</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- ############################### TomEE API ######################################## -->
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- TomEE :: JavaEE Full API (zip and JAR Files) -->
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Application Servers -->
+        <!-- OpenEJB :: Container :: Core -->
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>openejb-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- ############################### Testing Stack #################################### -->
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- Testing Frameworks -->
+        <!-- JUnit -->
+        <!-- JUnit is a regression testing framework written by Erich Gamma and Kent Beck. It is used by the developer who implements unit tests in Java. -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Assertion Libraries -->
+        <!-- AssertJ Fluent Assertions -->
+        <!-- Rich and fluent assertions for testing for Java -->
+        <!-- Alternative to Hamcrest matchers. Provides fluent, type-aware API -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- ############################### Cucumber ######################################### -->
+        <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
+        <!-- Cucumber JVM: Java8 -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber JVM: JUnit-->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber JVM: OpenEJB -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-openejb</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>openejb-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+
+
+
+
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- ############################## Project Information ############################### -->
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- PROJECT INFORMATION -->
+    <name>Themis :: Sandbox Parent</name>
+    <description>Sandbox for Microservices</description>
+
+
+
+
+
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- ############################## Build Settings #################################### -->
+    <!-- ################################################################################## -->
+    <!-- ################################################################################## -->
+    <!-- Build Config -->
+    <build>
+
+        <!-- Addtitional Plugins -->
+        <plugins>
+            <!-- Cucumber Reporting -->
+            <!-- Provides pretty html reports for Cucumber. It works by generating html from the cucumber json file -->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <cucumberOutput>${project.build.directory}/cucumber-reports/cucumber.json</cucumberOutput>
+                            <!--<outputDirectory>${project.build.directory}/cucumber-reports/pretty</outputDirectory>-->
+                            <!--<projectName>${project.description}</projectName>-->
+                            <!--<skippedFails>true</skippedFails>-->
+                            <!--<enableFlashCharts>false</enableFlashCharts>-->
+                            <!--<buildNumber>42</buildNumber>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
